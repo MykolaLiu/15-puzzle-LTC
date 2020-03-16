@@ -4,7 +4,8 @@ import QtQml.Models 2.11
 Item {
     id: root
 
-    property int boardSize: 4
+    property int boardSize: 2
+    property int steps: 0
     readonly property int totalCount: boardSize * boardSize
     readonly property int emptyValue: totalCount
 
@@ -26,6 +27,9 @@ Item {
         var up = index - boardSize;
 
         model.move(index, empty, 1);
+        steps += 1;
+        console.debug("Steps", steps)
+
 
         switch(empty) {
             case up:
@@ -34,6 +38,9 @@ Item {
             case down:
                 model.move(down - 1, index, 1);
                 break;
+        }
+        if(true === _internal.isFinish()) {
+            console.debug("Success");
         }
     }
 
@@ -101,6 +108,16 @@ Item {
                     return i;
                 }
             }
+        }
+
+        function isFinish() {
+            for(var i = 0; i < totalCount-1; ++i) {
+                console.debug(i+1,": ",_model.get(i).value)
+                if(_model.get(i).value !== i+1) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 

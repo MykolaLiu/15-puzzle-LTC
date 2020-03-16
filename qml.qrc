@@ -4,5 +4,7 @@
         <file>Tile.qml</file>
         <file>GameBoard.qml</file>
         <file>GameController.qml</file>
+        <file>Header.qml</file>
+        <file>Success.qml</file>
     </qresource>
 </RCC>
